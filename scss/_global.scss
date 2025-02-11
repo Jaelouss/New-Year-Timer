@@ -1,0 +1,21 @@
+@use 'helpers' as *;
+@use 'normalize';
+@use 'variables';
+
+h1,
+.h1 {
+  font-family: var(--main-family);
+  @include fluid-text(64, 25);
+}
+.value {
+  font-family: var(--second-family);
+  @include fluid-text(100, 40);
+}
+.label {
+  @include fluid-text(60, 20);
+}
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
