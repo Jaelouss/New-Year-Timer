@@ -278,6 +278,7 @@ main {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  gap: 0.9375rem;
 }
 
 .container {
@@ -303,11 +304,11 @@ main {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  gap: clamp(0.625rem, -0.1875rem + 3.3333333333vw, 3.125rem);
 }
 
 .title {
   text-align: center;
-  margin-bottom: clamp(1.5625rem, 0.4453125rem + 4.5833333333vw, 5rem);
 }
 
 .timer {
@@ -426,4 +427,5 @@ main {
   outline: none;
   border: none;
   text-decoration: none;
+  padding: 0.625rem;
 }/*# sourceMappingURL=main.css.map */
