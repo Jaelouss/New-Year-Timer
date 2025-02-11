@@ -6,9 +6,7 @@ import { seasons, img } from './js/season-data.js';
 const { body, titleEl, styleBtn, seasonElements, autorLink } = refs.elements;
 
 export function timer() {
-  const { currentYear, timer } = getNewYearTimer();
-
-  refs.elements.yearEl.textContent = currentYear;
+  const { timer } = getNewYearTimer();
 
   const formattedTimer = addLeadingZero(convertMs(timer));
   addTimer(formattedTimer, refs.timerRefs);
@@ -36,12 +34,12 @@ function setSeason(season) {
   autorLink.classList.remove(...seasons);
   autorLink.classList.add(season);
 
-  const currentYear = new Date().getFullYear();
+  const nextYear = new Date().getFullYear() + 1;
   if (season === 'newYear') {
-    titleEl.innerHTML = `Hooray! Today is the New <span class="year value" data-year>${currentYear}</span> Year! We celebrate!`;
+    titleEl.innerHTML = `Hooray! Today is the New <span class="year value" data-year>${nextYear}</span> Year! We celebrate!`;
   }
   if (season !== 'newYear') {
-    titleEl.innerHTML = `Until the new <span class="year value" data-year>${currentYear}</span> year
+    titleEl.innerHTML = `Until the new <span class="year value" data-year>${nextYear}</span> year
           remained`;
   }
 }

@@ -10,7 +10,6 @@ export function getNewYearTimer() {
   const remainingTime = newYear - Date.now();
 
   return {
-    currentYear,
     timer: remainingTime,
   };
 }
