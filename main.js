@@ -1,81 +1,60 @@
-// import { timer } from './js/timer.js';
+import refs from './js/refs.js';
+import { convertMs, addLeadingZero } from './js/format-time.js';
+import { addTimer, getNewYearTimer } from './js/timer-utils.js';
+import { seasons, img } from './js/season-data.js';
 
-// setInterval(timer, 1000);
+const { body, titleEl, styleBtn, seasonElements, autorLink } = refs.elements;
 
-// const titleEl = document.querySelector('.title');
-// const currentYear = new Date().getFullYear();
-// const nowDate = new Date();
-// const monthNow = nowDate.getMonth();
-// const body = document.querySelector('body');
-// const elements = document.querySelectorAll('[data="season"]');
+export function timer() {
+  const { currentYear, timer } = getNewYearTimer();
 
-// const img = {
-//   autumn: './img/autumn.jpg',
-//   summer: './img/summer.jpg',
-//   spring: './img/spring.jpg',
-//   winter: './img/winter.jpg',
-//   newYear: './img/new-year.jpg',
-// };
+  refs.elements.yearEl.textContent = currentYear;
 
-// if (nowDate.getMonth() === 11 && nowDate.getDate() === 31) {
-//   body.style.backgroundImage = `url(${img.newYear})`;
-//   elements.forEach((element) => {
-//     element.classList.add('new-year');
-//   });
-//   titleEl.textContent = `Already today New ${currentYear} Year! We celebrate!`;
-// } else if (monthNow === 0 || monthNow === 1 || monthNow === 11) {
-//   body.style.backgroundImage = `url(${img.winter})`;
-//   elements.forEach((element) => {
-//     element.classList.add('winter');
-//   });
-// } else if (monthNow === 2 || monthNow === 3 || monthNow === 4) {
-//   body.style.backgroundImage = `url(${img.spring})`;
-//   elements.forEach((element) => {
-//     element.classList.add('spring');
-//   });
-// } else if (monthNow === 5 || monthNow === 6 || monthNow === 7) {
-//   body.style.backgroundImage = `url(${img.summer})`;
-//   elements.forEach((element) => {
-//     element.classList.add('summer');
-//   });
-// } else if (monthNow === 8 || monthNow === 9 || monthNow === 10) {
-//   body.style.backgroundImage = `url(${img.autumn})`;
-//   elements.forEach((element) => {
-//     element.classList.add('autumn');
-//   });
-// }
-import { timer } from './js/timer.js';
+  const formattedTimer = addLeadingZero(convertMs(timer));
+  addTimer(formattedTimer, refs.timerRefs);
+}
+
+function getSeason(month, day) {
+  if (month === 11 && day === 31) return 'newYear';
+  if (month === 11 || month === 0 || month === 1) return 'winter';
+  if (month >= 2 && month <= 4) return 'spring';
+  if (month >= 5 && month <= 7) return 'summer';
+  return 'autumn';
+}
+
+function setSeason(season) {
+  body.style.backgroundImage = `url(${img[season]})`;
+
+  seasonElements.forEach((el) => {
+    el.classList.remove(...seasons);
+    el.classList.add(season);
+  });
+
+  styleBtn.classList.remove(...seasons);
+  styleBtn.classList.add(season);
+
+  autorLink.classList.remove(...seasons);
+  autorLink.classList.add(season);
+
+  const currentYear = new Date().getFullYear();
+  if (season === 'newYear') {
+    titleEl.innerHTML = `Hooray! Today is the New <span class="year value" data-year>${currentYear}</span> Year! We celebrate!`;
+  }
+  if (season !== 'newYear') {
+    titleEl.innerHTML = `Until the new <span class="year value" data-year>${currentYear}</span> year
+          remained`;
+  }
+}
+
+const now = new Date();
+const currentSeason = getSeason(now.getMonth(), now.getDate());
+setSeason(currentSeason);
+
+let currentSeasonIndex = seasons.indexOf(currentSeason);
+
+styleBtn.addEventListener('click', () => {
+  currentSeasonIndex = (currentSeasonIndex + 1) % seasons.length;
+  setSeason(seasons[currentSeasonIndex]);
+});
 
 setInterval(timer, 1000);
-
-const titleEl = document.querySelector('.title');
-const body = document.querySelector('body');
-const elements = document.querySelectorAll('[data="season"]');
-
-const img = {
-  autumn: './img/autumn.jpg',
-  summer: './img/summer.jpg',
-  spring: './img/spring.jpg',
-  winter: './img/winter.jpg',
-  newYear: './img/newYear.jpg',
-};
-
-const seasons = ['winter', 'spring', 'summer', 'autumn', 'newYear'];
-let currentSeasonIndex = 0;
-
-body.addEventListener('click', () => {
-  // Видаляємо всі сезонні класи
-  elements.forEach((element) => {
-    element.classList.remove(...seasons);
-  });
-
-  // Додаємо новий клас для всіх елементів
-  const currentSeason = seasons[currentSeasonIndex];
-  elements.forEach((element) => {
-    element.classList.add(currentSeason);
-    body.style.backgroundImage = `url(${img[currentSeason]})`;
-  });
-
-  // Оновлюємо індекс для наступного сезону
-  currentSeasonIndex = (currentSeasonIndex + 1) % seasons.length;
-});
