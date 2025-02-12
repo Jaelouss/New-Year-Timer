@@ -1,9 +1,9 @@
 export const seasons = ['winter', 'spring', 'summer', 'autumn', 'newYear'];
 
 export const img = {
-  autumn: './img/autumn.jpg',
-  summer: './img/summer.jpg',
-  spring: './img/spring.jpg',
-  winter: './img/winter.jpg',
-  newYear: './img/newYear.jpg',
+  autumn: './img/autumn.webp',
+  summer: './img/summer.webp',
+  spring: './img/spring.webp',
+  winter: './img/winter.webp',
+  newYear: './img/newYear.webp',
 };

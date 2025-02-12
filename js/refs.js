@@ -13,11 +13,4 @@ export default {
     styleBtn: document.querySelector('[data-styleBtn]'),
     autorLink: document.querySelector('[data-link]'),
   },
-  images: {
-    autumn: './img/autumn.jpg',
-    summer: './img/summer.jpg',
-    spring: './img/spring.jpg',
-    winter: './img/winter.jpg',
-    newYear: './img/newYear.jpg',
-  },
 };
