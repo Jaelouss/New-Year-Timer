@@ -57,27 +57,27 @@ main {
 }
 
 .newYear {
-  color: var(--new-year-color);
+  color: var(--absolute-black);
   background-color: var(--new-year-color-bgc);
   box-shadow: var(--shadow-main) #00ffe557;
 }
 .winter {
-  color: var(--winter-color);
+  color: var(--absolute-black);
   background-color: var(--winter-color-bgc);
   box-shadow: var(--shadow-main) #ffffff8f;
 }
 .autumn {
-  color: var(--autumn-color);
+  color: var(--absolute-white);
   background-color: var(--autumn-color-bgc);
   box-shadow: var(--shadow-main) #d975197a;
 }
 .spring {
-  color: var(--spring-color);
+  color: var(--absolute-white);
   background-color: var(--spring-color-bgc);
   box-shadow: var(--shadow-main) #00dcc582;
 }
 .summer {
-  color: var(--summer-color);
+  color: var(--absolute-white);
   background-color: var(--summer-color-bgc);
   box-shadow: var(--shadow-main) #961a1af5;
 }

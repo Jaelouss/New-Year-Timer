@@ -1,22 +1,13 @@
 @use 'helpers' as *;
 
 :root {
-  --new-year-color: #030d06;
   --new-year-color-bgc: #175c1bb0;
-
-  --winter-color: #1e0505;
   --winter-color-bgc: #e4e4e438;
-
-  --autumn-color: #09041e;
   --autumn-color-bgc: #ccb06255;
-
-  --spring-color: #470a2d;
   --spring-color-bgc: #53878c9e;
-
-  --summer-color: #200a0a;
   --summer-color-bgc: #a4363691;
-
   --absolute-black: #000000;
+  --absolute-white: #ffffff;
 
   --main-family: 'Unbounded', sans-serif;
   --second-family: 'Horyzen Mono', sans-serif;
